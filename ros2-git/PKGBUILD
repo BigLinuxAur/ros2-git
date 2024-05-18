@@ -15,8 +15,8 @@ pkgdesc="A set of software libraries and tools for building robot applications (
 url="https://docs.ros.org/en/rolling/"
 arch=('any')
 license=('Apache')
-makedepends=(git)
-depends=(
+makedepends= 'qt6-base' 'qt6-tools'(git)
+depends= 'qt6-base'(
     'ros2-arch-deps'
     'assimp'
     'gmock'
