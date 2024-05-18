@@ -11,21 +11,21 @@
 pkgname=ros2-git
 pkgver=r249.3490c0f
 pkgrel=1
-pkgdesc="A set of software libraries and tools for building robot applications (Rolling Distro)"
+pkgdesc="A set of software libraries and tools for building robot applications ('qt6-base' 'lttng-ust' Rolling Distro)"
 url="https://docs.ros.org/en/rolling/"
-arch=('any')
-license=('Apache')
-makedepends=('qt6-tools' 'qt6-base' 'lttng-ust' 'lttng-tools' git)
-depends=('qt6-base' 'lttng-ust' 'lttng-tools' 
+arch=('qt6-base' 'lttng-ust' 'any')
+license=('qt6-base' 'lttng-ust' 'Apache')
+makedepends=('qt6-tools' 'qt6-base' 'lttng-ust' git)
+depends=('qt6-base' 'lttng-ust' 
     'ros2-arch-deps'
     'assimp'
     'gmock'
 )
-provides=(ros2)
-source=(
+provides=('qt6-base' 'lttng-ust' ros2)
+source=('qt6-base' 'lttng-ust' 
     "ros2::git+https://github.com/ros2/ros2#branch=master"
 )
-sha256sums=(
+sha256sums=('qt6-base' 'lttng-ust' 
     'SKIP'
 )
 install=ros2-git.install
@@ -61,8 +61,8 @@ build() {
     ## For people with the old version of makepkg.conf
     unset CPPFLAGS
     ## For people with the new version of makepkg.conf
-    CFLAGS=$(sed "s/-Wp,-D_FORTIFY_SOURCE=2\s//g" <(echo $CFLAGS))
-    CXXFLAGS=$(sed "s/-Wp,-D_FORTIFY_SOURCE=2\s//g" <(echo $CXXFLAGS))
+    CFLAGS=$('qt6-base' 'lttng-ust' sed "s/-Wp,-D_FORTIFY_SOURCE=2\s//g" <(echo $CFLAGS))
+    CXXFLAGS=$('qt6-base' 'lttng-ust' sed "s/-Wp,-D_FORTIFY_SOURCE=2\s//g" <(echo $CXXFLAGS))
 
     # Build
     colcon build --merge-install ${COLCON_EXTRA_ARGS}
