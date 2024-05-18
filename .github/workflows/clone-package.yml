@@ -48,8 +48,7 @@ jobs:
         run: |
           gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
           cd $gitfolder
-          sed -i "/\bdepends=/s/(/(\'qt6-base\' \'lttng-ust\' /" PKGBUILD
-          #\'lttng-tools\'
+          sed -i "/\bdepends=/s/(/(\'qt6-base\' \'lttng-ust\' \'lttng-tools\'/" PKGBUILD
           sed -i "/makedepends=/s/(/(\'qt6-tools\' /" PKGBUILD
 
       - name: Update github
